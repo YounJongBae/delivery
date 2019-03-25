@@ -12,7 +12,6 @@ idna==2.7
 jmespath==0.9.4
 pathspec==0.5.9
 psycopg2==2.7.7
-pypiwin32==219
 python-dateutil==2.8.0
 pywinauto==0.6.6
 PyYAML==3.13
