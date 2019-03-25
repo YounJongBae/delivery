@@ -4,6 +4,7 @@ cement==2.8.2
 certifi==2019.3.9
 chardet==3.0.4
 colorama==0.3.9
+comtypes==1.1.7
 Django==1.10.5
 docutils==0.14
 future==0.16.0
@@ -11,8 +12,8 @@ idna==2.7
 jmespath==0.9.4
 pathspec==0.5.9
 psycopg2==2.7.7
-pypiwin32==219
 python-dateutil==2.8.0
+pywinauto==0.6.6
 PyYAML==3.13
 requests==2.20.1
 semantic-version==2.5.0
