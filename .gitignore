@@ -4,6 +4,7 @@ lib/
 *.py[cod]
 *.sqlite3
 pip-selfcheck.json
+sample_project/
 
 o2o/settings/local.py
 

@@ -42,6 +42,8 @@ INSTALLED_APPS = [
 
     # my apps
     'accounts',
+    'client',
+    'partner',
 ]
 
 MIDDLEWARE = [
@@ -59,7 +61,9 @@ ROOT_URLCONF = 'o2o.urls'
 TEMPLATES = [
     {
         'BACKEND': 'django.template.backends.django.DjangoTemplates',
-        'DIRS': [],
+        'DIRS': [
+            os.path.join(BASE_DIR, "templates")
+        ],
         'APP_DIRS': True,
         'OPTIONS': {
             'context_processors': [
