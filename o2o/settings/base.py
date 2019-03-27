@@ -149,7 +149,7 @@ AWS_PRELOAD_METADATA = True
 AWS_QUERYSTRING_AUTH = True
 AWS_S3_HOST = "s3-ap-northeast-2.amazonaws.com"
 DEFAULT_FILE_STORAGE = 'o2o.utils.MediaRootS3BotoStorage'
-STATICFILES_STORAGE = 'storages.backends.s3boto3.S3Boto3Storage'
+STATICFILES_STORAGE = 'o2o.utils.StaticRootS3BotoStorage'
 AWS_STORAGE_BUCKET_NAME = 'awsbean-bucket-project'
 S3DIRECT_REGION = 'ap-northeast-2'
 S3_URL = '//%s.s3.amazonaws.com/' % AWS_STORAGE_BUCKET_NAME
@@ -164,3 +164,4 @@ AWS_HEADERS = {
     'Expires': expires,
     'Cache-Control': 'max-age=86400',
 }
+AWS_DEFAULT_ACL = "S3Django"
