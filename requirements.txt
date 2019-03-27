@@ -1,3 +1,4 @@
+awscli==1.16.132
 awsebcli==3.14.13
 boto==2.49.0
 botocore==1.12.122
@@ -14,13 +15,16 @@ idna==2.7
 jmespath==0.9.4
 pathspec==0.5.9
 psycopg2==2.7.7
+pyasn1==0.4.5
 pypiwin32==219
 python-dateutil==2.8.0
 pywinauto==0.6.6
 PyYAML==3.13
 requests==2.20.1
+rsa==3.4.2
 s3transfer==0.2.0
 semantic-version==2.5.0
 six==1.11.0
 termcolor==1.1.0
+urllib3==1.22
 wcwidth==0.1.7
