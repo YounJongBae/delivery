@@ -15,6 +15,7 @@ jmespath==0.9.4
 pathspec==0.5.9
 psycopg2==2.7.7
 python-dateutil==2.8.0
+pywin32==224
 pywinauto==0.6.6
 PyYAML==3.13
 requests==2.20.1
