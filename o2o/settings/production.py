@@ -26,4 +26,3 @@ AWS_HEADERS = {
     'Expires': expires,
     'Cache-Control': 'max-age=86400',
 }
-AWS_DEFAULT_ACL = None
