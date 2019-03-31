@@ -1,0 +1,20 @@
+{% extends "base.html" %}
+{% block title %}업체 정보 관리{% endblock %}
+{% block body %}
+{% include "navbar.html" %}
+<div class="container">
+  <p class="text-secondary">업체 정보를 수정해주세요!</p>
+  <hr class="mb-4">
+  <div class="row">
+    <div class="col-sm-6 col-sm-3-offset">
+      <form method="post" action="">
+        {% csrf_token %}
+        {{ form.as_p }}
+        <button class="btn btn-outline-info btn-block" type="submit">
+          저장하기
+        </button>
+      </form>
+    </div>
+  </div>
+</div>
+{% endblock %}

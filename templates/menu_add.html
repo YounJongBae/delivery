@@ -1,0 +1,16 @@
+{% extends "base.html" %}
+{% block title %}메뉴 리스트{% endblock %}
+{% block body %}
+{% include "navbar.html" %}
+<div class="container">
+  <p class="text-secondary">메뉴를 추가해주세요!</p>
+  <hr class="mb-4">
+  <div class="col-sm-6 col-sm-3-offset">
+    <form enctype="multipart/form-data" method="post" action="">
+      {% csrf_token %}
+      {{ form.as_p }}
+      <button class="btn btn-outline-info btn-block" type="submit">추가하기</button>
+    </form>
+  </div>
+</div>
+{% endblock %}
