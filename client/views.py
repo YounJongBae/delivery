@@ -114,7 +114,7 @@ def order(request, partner_id):
         order = Order.objects.create(
             client=request.user.client,
             partner=partner,
-            contact="d",
+            contact="contact",
             address="address",
             requestment="requestment",
         )

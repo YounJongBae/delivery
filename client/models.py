@@ -34,8 +34,6 @@ class Order(models.Model):
     class Meta:
          ordering = ['-created_at']
 
-    # date_created = models.DateTimeField('date_created', default=timezone.now(), blank=False)
-
 
     # is_delivered = models.BooleanField(default=False)
     # delivered_at = models.DateTimeField(null=True, blank=True, editable=True)
