@@ -1,0 +1,42 @@
+{% extends "base.html" %}
+{% block title %}회원가입{% endblock %}
+{% block body %}
+{% include "navbar.html" %}
+<!-- <h1>Search Page</h1> -->
+
+<!-- <br/> -->
+<!-- <form action="{% url 'search:searchposts' %}" method="GET" value="{{request.GET.q}}">
+Search <input type="text" name="q" value="{{request.GET.q}}" placeholder="Search posts"/>
+<input type="submit" name="submit" value="Search"/>
+</form> -->
+
+<div class="container">
+  <hr class="mb-4">
+
+{% if request.GET.q != '' %}
+{% if results %}
+<h3>"<b>{{ request.GET.q }}</b>" 검색결과 :</h3>
+<br/><br/>
+
+  <div class="row">
+    <div class="col-sm-6 col-sm-offset-3">
+      <div class="row">
+      {% for result in results %}
+        <div class="col-sm-4">
+          <a href="/{{ result.id }}/"><img style="max-width:100%;" src="{{result.image.url}}"></a>
+          <br/>
+          <a href="/{{ result.id }}/"><h4>{{result.name}}</h4></a>
+          <br/>
+          <p class="text-muted">{{result.address}}</p>
+          <br/>
+        </div>
+      {% endfor %}
+      </div>
+    </div>
+  </div>
+{% else %}
+<h3>일치하는 가게 이름이나 주소가 없습니다!</h3>
+{% endif %}
+{% endif %}
+</div>
+{% endblock %}

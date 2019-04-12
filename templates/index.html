@@ -1,5 +1,5 @@
 {% extends "base.html" %}
-{% block title %}메인{% endblock %}
+{% block title %}배민 사장님{% endblock %}
 {% block body %}
 {% include "navbar.html" %}
 <div class="container">
@@ -11,6 +11,10 @@
         <div class="col-sm-6 col-sm-3-offset">
           <table class="table table-borderless">
             <tbody>
+              <tr>
+                <th scope="row">가게 사진</th>
+                <td><img style="max-width:100%;" src="{{ user.partner.image.url }}"></td>
+              </tr>
               <tr>
                 <th scope="row">가게 이름</th>
                 <td>{{ user.partner.name }}</td>
@@ -40,7 +44,7 @@
       <hr class="mb-4">
       <div class="row">
         <div class="col-sm-6 col-sm-3-offset">
-          <form method="post" action="">
+          <form enctype="multipart/form-data" method="post" action="">
             {% csrf_token %}
             {{ form.as_p }}
             <button class="btn btn-outline-info btn-block" type="submit">
@@ -51,7 +55,15 @@
       </div>
     {% endif %}
   {% else %}
-    로그인 해주세요
+  <div class="jumbotron">
+    <h2 class="display-3">배민 Partner 페이지입니다!</h2>
+    <p class="h3">가게를 등록하고 배민을 이용해보세요.</p>
+    <hr class="my-4">
+    <h5>서비스를 이용하시려면 로그인이 필요합니다.</h5>
+    <a class="btn btn-info" href="/partner/login/" role="button">로그인</a>
+    <a class="btn btn-secondary" href="/partner/signup/" role="button">회원가입</a>
+    <a href="/">client 페이지 가기</a>
+  </div>
   {% endif %}
 </div>
 {% endblock %}

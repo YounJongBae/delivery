@@ -4,7 +4,7 @@ from .models import Partner, Menu
 class PartnerForm(ModelForm):
     class Meta:
         model = Partner
-        fields = ['name', 'contact', 'address', 'description']
+        fields = ['category', 'image', 'name', 'contact', 'address', 'description']
         widgets = {
             'name': TextInput(attrs={"class":"form-control"}),
             'contact': TextInput(attrs={"class":"form-control"}),

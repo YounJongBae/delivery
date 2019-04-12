@@ -1,0 +1,62 @@
+{% extends "base.html" %}
+{% block title %}메뉴 리스트{% endblock %}
+{% block body %}
+{% include "navbar.html" %}
+<div class="container">
+  <p class="h4 text-secondary">{{ partner.name }} 메뉴입니다!</p>
+  <hr class="mb-4">
+  <div class="col-sm-6 col-sm-3-offset">
+    <form method="post" action="">
+    {% csrf_token %}
+      <table class="table table-hover">
+        <thead>
+          <tr>
+            <th scope="col">메뉴 사진</th>
+            <th scope="col">이름</th>
+            <th scope="col">가격</th>
+            <th scope="col">메뉴 소개</th>
+            <th scope="col">수량</th>
+          </tr>
+        </thead>
+        <tbody>
+          {% for menu in menu_list %}
+          <tr>
+            <td><a href="/partner/menu/{{ menu.id }}/"><img style="max-width:150px;" src="{{ menu.image.url }}"></a></td>
+            <td><a href="/partner/menu/{{ menu.id }}/">{{ menu.name }}</a></td>
+            <td>{{ menu.price }}</td>
+            <td>{{ menu.description }}</td>
+            <td><input style="width:40px; font-size:15px;" name="{{ menu.id }}" type="number" value=0 min=0 max=100 /></td>
+          </tr>
+          {% endfor %}
+        </tbody>
+      </table>
+      <!-- <p>
+        <button class="btn btn-light btn-block btn-lg" type="button" data-toggle="collapse" data-target="#collapseExample" aria-expanded="false" aria-controls="collapseExample">
+          메뉴 주문
+        </button>
+      </p>
+      <div class="collapse" id="collapseExample">
+        <div class="card card-body">
+          <div class="form-group">
+            <label>전화번호</label>
+            <input type="text" name="contact" class="form-control" placeholder="010-1234-1234" required="" autofocus="">
+          </div>
+
+          <div class="form-group">
+            <label>배달 받을 주소</label>
+            <input type="text" name="address" class="form-control" placeholder="서울 강동구 암사동 배민아파트" required="">
+          </div>
+
+          <div class="form-group">
+            <label>요청사항</label>
+            <input type="text" name="requestment" class="form-control" placeholder="선택사항">
+          </div>
+
+        </div>
+      </div> -->
+      <button class="btn btn-outline-info btn-lg" type="submit">주문하기</button>
+    </form>
+    <hr class="mb-4">
+  </div>
+</div>
+{% endblock %}

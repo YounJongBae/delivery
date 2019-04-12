@@ -1,0 +1,37 @@
+{% extends "base.html" %}
+{% block title %}메뉴 리스트{% endblock %}
+{% block body %}
+{% include "navbar.html" %}
+<div class="container">
+  <h2>주문입니다!</h2>
+  <table class="table table-sm">
+    <thead>
+      <tr>
+        <th scope="col">주문시각</th>
+        <th scope="col">가게이름</th>
+        <th scope="col">전화번호</th>
+        <th scope="col">요청사항</th>
+        <th scope="col">주문 메뉴</th>
+        <th scope="col">수량</th>
+        <th scope="col">주문금액</th>
+      </tr>
+    </thead>
+    {% regroup item_list by name as grouped %}
+    {% for group in grouped %}
+    {% for item in group.list %}
+    <tbody>
+      <tr>
+        {% ifchanged %}<td rowspan="{{ group.list|length }}">{{ item.order.created_at }}</td>{% else %}<td></td>{% endifchanged %}
+        {% ifchanged item.order.created_at %}<td rowspan="{{ group.list|length }}">{{ item.order.partner.name }}</td>{% else %}<td></td>{% endifchanged %}
+        {% ifchanged item.order.created_at %}<td rowspan="{{ group.list|length }}">{{ item.order.partner.contact }}</td>{% else %}<td></td>{% endifchanged %}
+        {% ifchanged item.order.created_at %}<td rowspan="{{ group.list|length }}">{{ item.order.requestment }}</td>{% else %}<td></td>{% endifchanged %}
+        <td>{{ item.menu.name }}</td>
+        <td>{{ item.count }}</td>
+        {% ifchanged item.order.created_at %}<td rowspan="{{ group.list|length }}">{{ item.menu.price }}</td>{% else %}<td></td>{% endifchanged %}
+      </tr>
+    </tbody>
+    {% endfor %}
+    {% endfor %}
+  </table>
+</div>
+{% endblock %}

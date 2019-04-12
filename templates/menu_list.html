@@ -9,9 +9,8 @@
     <table class="table table-hover">
       <thead>
         <tr>
-          <th scope="col"></th>
           <th scope="col">메뉴 사진</th>
-          <th scope="col">메뉴 이름</th>
+          <th scope="col">이름</th>
           <th scope="col">가격</th>
           <th scope="col">메뉴 소개</th>
         </tr>
@@ -19,9 +18,8 @@
       <tbody>
         {% for menu in menu_list %}
         <tr>
-          <th scope="row"><a href="/partner/menu/"><i class="far fa-edit"></i></a></th>
-          <td><img style="max-width:150px;" src="{{ menu.image.url }}"></td>
-          <td>{{ menu.name }}</td>
+          <td><a href="/partner/menu/{{ menu.id }}/"><img style="max-width:150px;" src="{{ menu.image.url }}"></a></td>
+          <td><a href="/partner/menu/{{ menu.id }}/">{{ menu.name }}</a></td>
           <td>{{ menu.price }}</td>
           <td>{{ menu.description }}</td>
         </tr>

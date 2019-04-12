@@ -19,6 +19,8 @@ from django.contrib import admin
 urlpatterns = [
     url(r'^admin/', admin.site.urls),
     url(r'^partner/', include('partner.urls')),
+    url(r'^search/', include('search.urls',namespace='search')),
+    url(r'^', include('client.urls')),
 ]
 
 from django.conf import settings

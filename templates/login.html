@@ -4,14 +4,31 @@
 <hr class="mb-4">
 <div class="container">
   <form method="post" action="" class="form-signin">
-    <h1 class="h3 mb-3 font-weight-normal">member login</h1>
+    <h1 class="h3 mb-3 font-weight-normal">{% if is_client %}member login{% else %}partner member login{% endif %}</h1>
     <hr class="mb-4">
     {% csrf_token %}
     <input type="text" name="username" class="form-control" placeholder="ID" required="" autofocus="">
     <input type="password" name="password" class="form-control" placeholder="Password" required="">
     {{ error }}
     <button class="btn btn-lg btn-outline-info btn-block" type="submit">login</button>
-    <p class="mt-5 mb-3 text-muted text-right">배달의 민족</p>
+    <div class="modal-footer">
+      <p class="text-secondary">아직 회원이 아니신가요?</p>
+      {% if is_client %}
+      <a href="/signup/">
+        <button type="button" class="btn btn-outline-secondary">회원가입</button>
+      </a>
+      {% else %}
+      <a href="/partner/signup/">
+        <button type="button" class="btn btn-outline-secondary">사업자 회원가입</button>
+      </a>
+      {% endif %}
+    </div>
+    <div class="modal-footer">
+      {% if is_client %}
+      <a href="/partner/login/">사업자 회원 로그인</a>
+      {% endif %}
+    </div>
+    <!-- <p class="mt-5 mb-3 text-muted text-right">배달의 민족</p> -->
   </form>
 </div>
 {% endblock %}

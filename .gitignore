@@ -5,6 +5,7 @@ lib/
 *.sqlite3
 pip-selfcheck.json
 sample_project/
+media/
 
 o2o/settings/local.py
 
