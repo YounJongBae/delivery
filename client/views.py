@@ -137,11 +137,11 @@ def order_client(request):
     orders = Order.objects.filter(client=request.user.client, created_at__lte=timezone.now())
     item_list = []
     for order in orders:
-        item_list.extend([item for item in OrderItem.objects.filter(order=order).distinct()])
-        # for item in OrderItem.objects.filter(order=order).distinct():
-        #     item.menu.price *= item.count
-        #     item.save()
-        #     item_list.extend([item])
+        # item_list.extend([item for item in OrderItem.objects.filter(order=order).distinct()])
+        for item in OrderItem.objects.filter(order=order).distinct():
+            item.menu.price *= item.count
+            item.save()
+            item_list.extend([item])
 
 
     ctx.update({

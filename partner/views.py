@@ -145,21 +145,23 @@ def order(request):
     #     item_list.extend([item for item in OrderItem.objects.filter(menu=menu, delivered_at__lte=timezone.now()).order_by('delivered_at')])
     # order_set = set([item.order for item in item_list])
     # item_set = set([item for item in item_list])
-    orders = Order.objects.filter(partner=request.user.partner, created_at__lte=timezone.now()).order_by('-created_at')
-    item_list = []
-    for order in orders:
-        item_list.extend([item for item in OrderItem.objects.filter(order=order).distinct()])
+
+    # orders = Order.objects.filter(partner=request.user.partner, created_at__lte=timezone.now()).order_by('-created_at')
+    # item_list = []
+    # for order in orders:
+    #     item_list.extend([item for item in OrderItem.objects.filter(order=order).distinct()])
+
     # item_set = (item for item in item_list)
     # menu_list = Menu.objects.filter(partner=partner_dict)
-    # orders = Order.objects.filter(partner=request.user.partner)
-    # order_dict = {}
-    # for order in orders:
-    #     date_and_hour = order.created_at.now()
-    #     if date_and_hour in order_dict:
-    #         order_dict[date_and_hour].append(order)
-    #     else:
-    #         order_dict[date_and_hour] = [ order ]
-    #     order_list = Order.objects.filter(delivered_at=date_and_hour)
+    orders = Order.objects.filter(partner=request.user.partner)
+    order_dict = {}
+    for order in orders:
+        date_and_hour = order.created_at.date() + order.created_at.now()
+        if date_and_hour in order_dict:
+            order_dict[date_and_hour].append(order)
+        else:
+            order_dict[date_and_hour] = [ order ]
+        # order_list = Order.objects.filter(delivered_at=date_and_hour)
 
     ctx.update({
         "item_list" : item_list,
