@@ -10,7 +10,8 @@ from django.utils import timezone
 from django.db.models import Sum, F, ExpressionWrapper
 
 URL_LOGIN="/login/"
-
+def client_group_check(user):
+    return "client" in [group.name for group in user.groups.all()]
 # Create your views here.
 def index(request):
     ctx = {"is_client":True}
@@ -98,6 +99,7 @@ def logout(request):
     return redirect("/")
 
 @login_required(login_url=URL_LOGIN)
+@user_passes_test(client_group_check, login_url=URL_LOGIN)
 def order(request, partner_id):
     ctx = {"is_client":True}
     partner = Partner.objects.get(id=partner_id)
@@ -133,6 +135,7 @@ def order(request, partner_id):
     return render(request, "order_menu_list.html", ctx)
 
 @login_required(login_url=URL_LOGIN)
+@user_passes_test(client_group_check, login_url=URL_LOGIN)
 def order_client(request):
     ctx = {"is_client":True}
     orders = Order.objects.filter(client=request.user.client, created_at__lte=timezone.now())
