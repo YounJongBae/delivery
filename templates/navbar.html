@@ -53,6 +53,9 @@
           <a class="nav-link" href="/partner/login/">login</a>
         </li>
         {% endif %}
+        <li class="nav-item active">
+          <a class="nav-link" href="/">고객페이지</a>
+        </li>
       </ul>
     </div>
   </div>
@@ -144,6 +147,9 @@
             <a class="nav-link" href="/login/">login <span class="sr-only"></span></a>
           </li>
           {% endif %}
+          <li class="nav-item active">
+            <a class="nav-link" href="/partner/">사업자페이지<span class="sr-only"></span></a>
+          </li>
         </ul>
         <form class="form-inline my-2 my-md-0" method="GET" action="{% url 'search:searchposts' %}" value="{{request.GET.q}}">
           <input name="q" class="form-control" value="{{request.GET.q}}" type="text" placeholder="가게 검색" aria-label="Search">
