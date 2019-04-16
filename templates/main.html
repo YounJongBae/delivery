@@ -3,22 +3,49 @@
 {% block body %}
 {% include "navbar.html" %}
 <div class="container">
-  {% for category in category_list %}
-  <p class="text-secondary h3">{{ category }}입니다!</p>
-  {% endfor %}
-  <hr class="mb-4">
-  <div class="row">
-    <div class="col-sm-6 col-sm-offset-3">
-      <div class="row">
-      {% for partner in partner_list %}
-        <div class="col-sm-4">
-          <a href="/{{ partner.id }}/"><img style="max-width:100%;" src="{{ partner.image.url }}"></a>
-          <a href="/{{ partner.id }}/"><h4>{{ partner.name }}</h4></a>
-          <p class="text-muted">{{ partner.address }}</p>
+  {% if user.is_authenticated %}
+    {% for category in category_list %}
+    <p class="text-secondary h3">{{ category }}입니다!</p>
+    {% endfor %}
+    <hr class="mb-4">
+    <div class="row">
+      <div class="col-sm-6 col-sm-offset-3">
+        <div class="row">
+        {% for partner in partner_list %}
+          <div class="col-sm-4">
+            <a href="/{{ partner.id }}/"><img style="max-width:100%;" src="{{ partner.image.url }}"></a>
+            <a href="/{{ partner.id }}/"><h4>{{ partner.name }}</h4></a>
+            <p class="text-muted">{{ partner.address }}</p>
+          </div>
+        {% endfor %}
         </div>
-      {% endfor %}
       </div>
     </div>
-  </div>
+  {% else %}
+    <div class="jumbotron">
+      <p class="h3"><a href="/">고객(client page)</a>과 <a href="/partner/">사업자(partner page)</a>를 하나의 플랫폼에 모아놓은 서비스를 배달의 민족을 예시로 구현해보았습니다.</p>
+      <hr class="my-4">
+      <h5>위치정보는 구현하지 않음</h5>
+      <a class="btn btn-info" href="/login/" role="button">로그인</a>
+      <a class="btn btn-secondary" href="/signup/" role="button">회원가입</a>
+    </div>
+    {% for category in category_list %}
+    <p class="text-secondary h3">{{ category }}입니다!</p>
+    {% endfor %}
+    <hr class="mb-4">
+    <div class="row">
+      <div class="col-sm-6 col-sm-offset-3">
+        <div class="row">
+        {% for partner in partner_list %}
+          <div class="col-sm-4">
+            <a href="/{{ partner.id }}/"><img style="max-width:100%;" src="{{ partner.image.url }}"></a>
+            <a href="/{{ partner.id }}/"><h4>{{ partner.name }}</h4></a>
+            <p class="text-muted">{{ partner.address }}</p>
+          </div>
+        {% endfor %}
+        </div>
+      </div>
+    </div>
+  {% endif %}
 </div>
 {% endblock %}

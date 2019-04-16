@@ -112,7 +112,7 @@ def menu_detail(request, menu_id):
 @user_passes_test(partner_group_check, login_url=URL_LOGIN)
 def menu_edit(request, menu_id):
     ctx = { "replacement" : "수정",
-            "is_partner":True,
+            "is_partner":True
      }
     menu = Menu.objects.get(id=menu_id)
     if request.method == "GET":
@@ -137,6 +137,8 @@ def menu_delete(request, menu_id):
     menu.delete()
     return redirect("/partner/menu/")
 
+@login_required(login_url=URL_LOGIN)
+@user_passes_test(partner_group_check, login_url=URL_LOGIN)
 def order(request):
     ctx = {"is_partner":True}
     # menu_list = Menu.objects.filter(partner=request.user.partner)
@@ -146,21 +148,21 @@ def order(request):
     # order_set = set([item.order for item in item_list])
     # item_set = set([item for item in item_list])
 
-    # orders = Order.objects.filter(partner=request.user.partner, created_at__lte=timezone.now()).order_by('-created_at')
-    # item_list = []
-    # for order in orders:
-    #     item_list.extend([item for item in OrderItem.objects.filter(order=order).distinct()])
+    orders = Order.objects.filter(partner=request.user.partner, created_at__lte=timezone.now()).order_by('-created_at')
+    item_list = []
+    for order in orders:
+        item_list.extend([item for item in OrderItem.objects.filter(order=order).distinct()])
 
     # item_set = (item for item in item_list)
     # menu_list = Menu.objects.filter(partner=partner_dict)
-    orders = Order.objects.filter(partner=request.user.partner)
-    order_dict = {}
-    for order in orders:
-        date_and_hour = order.created_at.date() + order.created_at.now()
-        if date_and_hour in order_dict:
-            order_dict[date_and_hour].append(order)
-        else:
-            order_dict[date_and_hour] = [ order ]
+    # orders = Order.objects.filter(partner=request.user.partner)
+    # order_dict = {}
+    # for order in orders:
+    #     date_and_hour = order.created_at.date() + order.created_at.hour()
+    #     if date_and_hour in order_dict:
+    #         order_dict[date_and_hour].append(order)
+    #     else:
+    #         order_dict[date_and_hour] = [ order ]
         # order_list = Order.objects.filter(delivered_at=date_and_hour)
 
     ctx.update({

@@ -108,15 +108,15 @@ def order(request, partner_id):
             "menu_list": menu_list,
         })
     elif request.method == "POST":
-        # contact = request.POST.get('contact')
-        # address = request.POST.get('address')
-        # requestment = request.POST.get('requestment')
+        contact = request.POST.get('contact')
+        address = request.POST.get('address')
+        requestment = request.POST.get('requestment')
         order = Order.objects.create(
             client=request.user.client,
             partner=partner,
-            contact="contact",
-            address="address",
-            requestment="requestment",
+            contact=contact,
+            address=address,
+            requestment=requestment,
         )
         for menu in menu_list:
             menu_count = request.POST.get(str(menu.id))
@@ -128,20 +128,21 @@ def order(request, partner_id):
                     count=menu_count
                 )
 
-            return redirect("/")
+        return redirect("/order/")
 
     return render(request, "order_menu_list.html", ctx)
 
+@login_required(login_url=URL_LOGIN)
 def order_client(request):
     ctx = {"is_client":True}
     orders = Order.objects.filter(client=request.user.client, created_at__lte=timezone.now())
     item_list = []
     for order in orders:
-        # item_list.extend([item for item in OrderItem.objects.filter(order=order).distinct()])
-        for item in OrderItem.objects.filter(order=order).distinct():
-            item.menu.price *= item.count
-            item.save()
-            item_list.extend([item])
+        item_list.extend([item for item in OrderItem.objects.filter(order=order).distinct()])
+        # for item in OrderItem.objects.filter(order=order).distinct():
+        #     item.menu.price *= item.count
+        #     item.save()
+        #     item_list.extend([item])
 
 
     ctx.update({

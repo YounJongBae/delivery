@@ -8,12 +8,11 @@
     <thead>
       <tr>
         <th scope="col">주문시각</th>
-        <th scope="col">가게이름</th>
-        <th scope="col">전화번호</th>
+        <th scope="col">가게 이름</th>
+        <th scope="col">가게 전화번호</th>
         <th scope="col">요청사항</th>
         <th scope="col">주문 메뉴</th>
         <th scope="col">수량</th>
-        <th scope="col">주문금액</th>
       </tr>
     </thead>
     {% regroup item_list by name as grouped %}
@@ -27,7 +26,6 @@
         {% ifchanged item.order.created_at %}<td rowspan="{{ group.list|length }}">{{ item.order.requestment }}</td>{% else %}<td></td>{% endifchanged %}
         <td>{{ item.menu.name }}</td>
         <td>{{ item.count }}</td>
-        {% ifchanged item.order.created_at %}<td rowspan="{{ group.list|length }}">{{ item.menu.price }}</td>{% else %}<td></td>{% endifchanged %}
       </tr>
     </tbody>
     {% endfor %}
