@@ -9,6 +9,7 @@ media/
 
 o2o/settings/production.py
 accounts/management/commands/makesuper.py
+accounts/
 
 # Elastic Beanstalk Files
 .elasticbeanstalk/*
