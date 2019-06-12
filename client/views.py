@@ -142,14 +142,13 @@ def order_client(request):
     item_list = []
     for order in orders:
         item_list.extend([item for item in OrderItem.objects.filter(order=order).distinct()])
-        # for item in OrderItem.objects.filter(order=order).distinct():
-        #     item.menu.price *= item.count
-        #     item.save()
-        #     item_list.extend([item])
-
 
     ctx.update({
         "item_list" : item_list,
     })
 
+    # for item in OrderItem.objects.filter(order=order).distinct():
+    #     item.menu.price *= item.count
+    #     item.save()
+    #     item_list.extend([item])
     return render(request, "order_list_for_client.html", ctx)

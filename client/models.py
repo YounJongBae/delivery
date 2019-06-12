@@ -34,6 +34,11 @@ class Order(models.Model):
     class Meta:
          ordering = ['-created_at']
 
+    items = models.ManyToManyField(
+        Menu,
+        through='OrderItem',
+        through_fields=('order', 'menu'),
+    )
 
     # is_delivered = models.BooleanField(default=False)
     # delivered_at = models.DateTimeField(null=True, blank=True, editable=True)
@@ -41,13 +46,6 @@ class Order(models.Model):
     #     self.is_delivered = True
     #     self.delivered_at = timezone.now()
     #     self.save()
-
-    items = models.ManyToManyField(
-        Menu,
-        through='OrderItem',
-        through_fields=('order', 'menu'),
-    )
-
     def __str__(self):
         return self.client.name
 
